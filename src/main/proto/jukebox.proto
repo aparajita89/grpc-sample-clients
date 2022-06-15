@@ -1,0 +1,38 @@
+syntax = "proto3";
+package com.flipkarthealthplus.marketplace.jukeboxservice;
+import "google/protobuf/empty.proto";
+//import "google/api/annotations.proto";
+option java_multiple_files = true;
+
+service JukeboxService {
+  rpc GetSong(GetSongRequest) returns (Song) {
+//        option (google.api.http) = {get: "/v1/songs/{song}"};
+  }
+
+  rpc ListSongs(google.protobuf.Empty) returns (ListSongsResponse) {
+    //    option (google.api.http) = {get: "/v1/albums/{album}/songs"};
+  }
+
+  rpc AddSong(AddSongRequest) returns (Song) {}
+}
+
+message GetSongRequest {
+  Song song = 1;
+}
+
+message AddSongRequest {
+  Song song = 1;
+}
+
+message ListSongsResponse {
+  repeated Song songs = 1;
+}
+
+message Song {
+  int64 id = 1;
+  string name = 2;
+}
+
+message SongDatabase {
+  repeated Song song = 1;
+}
